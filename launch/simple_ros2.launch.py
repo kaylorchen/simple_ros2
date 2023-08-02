@@ -10,5 +10,6 @@ def generate_launch_description():
             executable='simple_ros2',
             name='simple_ros2',
             arguments=["--ros-args", "--log-level", "info"],
+            output="screen",
         )
     ])
