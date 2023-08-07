@@ -8,3 +8,11 @@ all:
 
 clean:
 	cd ../.. && rm -rf build_${ARCH} install_${ARCH} log*
+
+deb:
+	fakeroot debian/rules clean
+	gbp dch -S -a --snapshot-number='os.popen("git log --pretty=oneline | wc -l").readlines()[0]' 
+	fakeroot debian/rules binary
+
+extract:
+	rm deb_raw -rf && cd .. && dpkg-deb --raw-extract ./ros-foxy-simple-ros2*.deb ./simple_ros2/deb_raw

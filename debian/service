@@ -1,0 +1,19 @@
+[Unit]
+Description="bringup stardust-data-center"
+After=network.target
+
+[Service]
+Environment=ROS_HOME=/root/.ros
+Environment=ROS_DISTRO=foxy
+Environment=ROS_LOCALHOST_ONLY=0
+Environment=ROS_PYTHON_VERSION=3
+Environment=ROS_VERSION=2
+Environment=PYTHONPATH=/opt/ros/foxy/lib/python3.8/site-packages
+Environment=AMENT_PREFIX_PATH=/opt/ros/foxy
+Environment=PATH=/opt/ros/foxy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=LD_LIBRARY_PATH=/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/usr/local/lib/
+ExecStart=/opt/ros/foxy/bin/ros2 launch simple_ros2 simple_ros2.launch.py
+
+[Install]
+WantedBy=multi-user.target
+

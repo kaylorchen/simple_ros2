@@ -1,0 +1,12 @@
+Source: ros-foxy-simple-ros2
+Section: misc
+Priority: optional
+Maintainer: kaylor <kaylor.chen@qq.com>
+Build-Depends: debhelper (>= 9.0.0), ros-foxy-ament-cmake, ros-foxy-ament-lint-auto <!nocheck>, ros-foxy-ament-lint-common <!nocheck>, ros-foxy-rclcpp
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-foxy-simple-ros2
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-foxy-rclcpp
+Description: TODO: Package description
