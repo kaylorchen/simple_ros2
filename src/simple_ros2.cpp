@@ -21,5 +21,6 @@ int main(int argc, char** argv) {
   RCLCPP_FATAL(node->get_logger(), "RCLCPP FATAL");
   fflush(stdout);
   rclcpp::shutdown();
+  exit(EXIT_FAILURE);
   return 0;
 }

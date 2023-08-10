@@ -11,5 +11,7 @@ def generate_launch_description():
             name='simple_ros2',
             arguments=["--ros-args", "--log-level", "info"],
             output="screen",
+            respawn=True,
+            respawn_delay=3,
         )
     ])
