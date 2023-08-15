@@ -1,4 +1,6 @@
 ARCH = $(shell arch)
+VERSION = $(shell git describe --tags)
+MSG = $(shell git log -n 1 --pretty=format:"%s")
 
 all:
 	cd ../.. && colcon build \
@@ -10,8 +12,9 @@ clean:
 	cd ../.. && rm -rf build_${ARCH} install_${ARCH} log*
 
 deb:
+	rm -rf debian/changelog
+	dch --create --package=ros-humble-stardust-clean-robot-base -v ${VERSION} ${MSG}
 	fakeroot debian/rules clean
-	gbp dch -S -a --snapshot-number='os.popen("git log --pretty=oneline | wc -l").readlines()[0]' 
 	fakeroot debian/rules binary
 
 extract:
