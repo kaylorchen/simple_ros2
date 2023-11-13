@@ -13,7 +13,12 @@ install(TARGETS
         single_subscriber
         DESTINATION lib/${PROJECT_NAME})
 
-find_package(std_msgs REQUIRED)
+add_executable(multi_subscribers multi_subscribers.cpp)
+ament_target_dependencies(multi_subscribers rclcpp std_msgs)
+install(TARGETS
+        multi_subscribers
+        DESTINATION lib/${PROJECT_NAME})
+
 add_executable(talker talker.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
 install(TARGETS
