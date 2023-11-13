@@ -5,3 +5,17 @@ ament_target_dependencies(simple_ros2 rclcpp)
 install(TARGETS
         simple_ros2
         DESTINATION lib/${PROJECT_NAME})
+
+find_package(std_msgs REQUIRED)
+add_executable(single_subscriber single_subscriber.cpp)
+ament_target_dependencies(single_subscriber rclcpp std_msgs)
+install(TARGETS
+        single_subscriber
+        DESTINATION lib/${PROJECT_NAME})
+
+find_package(std_msgs REQUIRED)
+add_executable(talker talker.cpp)
+ament_target_dependencies(talker rclcpp std_msgs)
+install(TARGETS
+        talker
+        DESTINATION lib/${PROJECT_NAME})
