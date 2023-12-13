@@ -7,6 +7,7 @@ all:
 	--build-base build_${ARCH} \
 	--install-base install_${ARCH} \
 	--packages-select simple_ros2
+	pwd && cp -v  ../../build_${ARCH}/*.json ./
 
 clean:
 	cd ../.. && rm -rf build_${ARCH} install_${ARCH} log*

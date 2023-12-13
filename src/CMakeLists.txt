@@ -24,3 +24,9 @@ ament_target_dependencies(talker rclcpp std_msgs)
 install(TARGETS
         talker
         DESTINATION lib/${PROJECT_NAME})
+
+add_executable(logtest logtest.cpp)
+ament_target_dependencies(logtest rclcpp)
+install(TARGETS
+        logtest
+        DESTINATION lib/${PROJECT_NAME})
