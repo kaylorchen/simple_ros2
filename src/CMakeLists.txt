@@ -7,6 +7,7 @@ install(TARGETS
         DESTINATION lib/${PROJECT_NAME})
 
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 add_executable(single_subscriber single_subscriber.cpp)
 ament_target_dependencies(single_subscriber rclcpp std_msgs)
 install(TARGETS
@@ -29,4 +30,10 @@ add_executable(logtest logtest.cpp)
 ament_target_dependencies(logtest rclcpp)
 install(TARGETS
         logtest
+        DESTINATION lib/${PROJECT_NAME})
+
+add_executable(sub_once_msg sub_once_msg.cpp)
+ament_target_dependencies(sub_once_msg rclcpp sensor_msgs)
+install(TARGETS
+        sub_once_msg
         DESTINATION lib/${PROJECT_NAME})
