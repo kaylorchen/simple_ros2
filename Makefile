@@ -3,14 +3,13 @@ VERSION = $(shell git describe --tags)
 MSG = $(shell git log -n 1 --pretty=format:"%s")
 
 all:
-	cd ../.. && colcon build \
+	colcon build \
 	--build-base build_${ARCH} \
 	--install-base install_${ARCH} \
 	--packages-select simple_ros2
-	pwd && cp -v  ../../build_${ARCH}/*.json ./
 
 clean:
-	cd ../.. && rm -rf build_${ARCH} install_${ARCH} log*
+	rm -rf build_${ARCH} install_${ARCH} log*
 
 deb:
 	rm -rf debian/changelog

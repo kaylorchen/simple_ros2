@@ -1,5 +1,6 @@
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(kaylordut REQUIRED)
 add_executable(simple_ros2 simple_ros2.cpp)
 ament_target_dependencies(simple_ros2 rclcpp)
 install(TARGETS
@@ -22,6 +23,7 @@ install(TARGETS
 
 add_executable(talker talker.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
+target_link_libraries(talker ${kaylordut_LIBS})
 install(TARGETS
         talker
         DESTINATION lib/${PROJECT_NAME})

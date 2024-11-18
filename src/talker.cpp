@@ -5,6 +5,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+#include "kaylordut/log/logger.h"
 
 using namespace std::chrono_literals;
 
@@ -29,12 +30,22 @@ class MinimalPublisher : public rclcpp::Node {
   }
 
   void timer1_callback() {
+    size_t num = 0;
+    KAYLORDUT_TIME_COST_INFO(
+      "get count from subscription",
+      {
+        num = this->publisher1_->get_subscription_count();
+      });
     auto message = std_msgs::msg::String();
     std::lock_guard<std::mutex> lock(count_mutex_);
-    message.data = "Hello, world! " + std::to_string(count_++);
-    RCLCPP_INFO(this->get_logger(), "Publishing: '%s', thread id = %s",
-                message.data.c_str(), string_thread_id().c_str());
+    message.data = "Hello, world! " + std::to_string(count_++) + " sub count = " + std::to_string(num);
+    RCLCPP_INFO(this->get_logger(), "Publishing: '%s', thread id = %s, sub count = %ld",
+                message.data.c_str(), string_thread_id().c_str(), num);
+    if (num == 0) {
+      KAYLORDUT_LOG_INFO("pub1 num = {}", num);
+    }else {
     publisher1_->publish(message);
+    }
   }
   void timer2_callback() {
     auto message = std_msgs::msg::String();
